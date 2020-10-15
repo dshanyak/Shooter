@@ -22,11 +22,9 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
         return;
     }
 
-    // If the killed pawn is an NPC, disengage player from combat
-    APlayerShooterCharacter* PlayerShooterCharacter = Cast<APlayerShooterCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-    if (PlayerShooterCharacter == nullptr)
-        return;
-    PlayerShooterCharacter->bIsInCombat = false;
+    // If the killed pawn is an NPC, disengage player from combat after delay
+    GetWorldTimerManager().SetTimer(DisengageFromCombatTimerHandle, this, &AKillEmAllGameMode::DisengageCombat, DisengageCombatDelay);
+    
     //check if any more are alive. If so, game's not over yet
     for(AShooterAIController* AIController : TActorRange<AShooterAIController>(GetWorld()))
     {
@@ -40,7 +38,7 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
     
 }
 
-void AKillEmAllGameMode::EndGame(bool bIsPlayerWinner) 
+void AKillEmAllGameMode::EndGame(bool bIsPlayerWinner) const
 {
     for (AController* Controller : TActorRange<AController>(GetWorld()))
     {
@@ -48,3 +46,12 @@ void AKillEmAllGameMode::EndGame(bool bIsPlayerWinner)
         Controller->GameHasEnded(Controller->GetPawn(), bIsWinner);
     }
 }
+
+void AKillEmAllGameMode::DisengageCombat() const
+{
+    APlayerShooterCharacter* PlayerShooterCharacter = Cast<APlayerShooterCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+    if (PlayerShooterCharacter == nullptr)
+        return;
+    PlayerShooterCharacter->bIsInCombat = false;
+}
+

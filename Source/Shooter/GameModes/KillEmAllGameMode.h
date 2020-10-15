@@ -18,6 +18,14 @@ public:
 	virtual void PawnKilled(APawn* PawnKilled) override;
 
 private:
-	void EndGame(bool bIsPlayerWinner);
+	// handle ending the game
+	void EndGame(bool bIsPlayerWinner) const;
+
+	// disengage player from combat after an NPC death
+	FTimerHandle DisengageFromCombatTimerHandle;
+	UPROPERTY(EditAnywhere)
+	float DisengageCombatDelay = 5.f;
+	void DisengageCombat() const;
+	
 	
 };
