@@ -5,7 +5,9 @@
 #include "GameFramework/PlayerController.h"
 #include "EngineUtils.h"
 #include "GameFramework/Controller.h"
+#include "Kismet/GameplayStatics.h"
 #include "Shooter/AI/Controllers/ShooterAIController.h"
+#include "Shooter/Characters/PlayerShooterCharacter.h"
 
 
 void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled) 
@@ -20,7 +22,12 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
         return;
     }
 
-    // If the killed pawn is an NPC, check if any more are alive. If so, game's not over yet
+    // If the killed pawn is an NPC, disengage player from combat
+    APlayerShooterCharacter* PlayerShooterCharacter = Cast<APlayerShooterCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+    if (PlayerShooterCharacter == nullptr)
+        return;
+    PlayerShooterCharacter->bIsInCombat = false;
+    //check if any more are alive. If so, game's not over yet
     for(AShooterAIController* AIController : TActorRange<AShooterAIController>(GetWorld()))
     {
         if(!AIController->IsDead())

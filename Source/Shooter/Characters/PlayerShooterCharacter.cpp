@@ -7,7 +7,7 @@ void APlayerShooterCharacter::BeginPlay()
 {
     Super::BeginPlay();
 
-    // GetWorldTimerManager().SetTimer(RegainHealthTimer, this, &APlayerShooterCharacter::RegainHealth, RegainHealthInterval, true);
+    GetWorldTimerManager().SetTimer(RegainHealthTimer, this, &APlayerShooterCharacter::RegainHealth, RegainHealthInterval, true);
 }
 
 void APlayerShooterCharacter::RegainHealth()

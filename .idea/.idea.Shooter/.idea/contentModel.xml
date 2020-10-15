@@ -30,12 +30,14 @@
             <e p="BTNodes" t="Include">
               <e p="BTTask_ClearBlackboardValue.cpp" t="Include" />
               <e p="BTTask_ClearBlackboardValue.h" t="Include" />
+              <e p="BTTask_DisengageCombat.cpp" t="Include" />
+              <e p="BTTask_DisengageCombat.h" t="Include" />
+              <e p="BTTask_EngageCombat.cpp" t="Include" />
+              <e p="BTTask_EngageCombat.h" t="Include" />
               <e p="BTTask_Shoot.cpp" t="Include" />
               <e p="BTTask_Shoot.h" t="Include" />
             </e>
             <e p="BTServices" t="Include">
-              <e p="BTService_IsPlayerInCombat.cpp" t="Include" />
-              <e p="BTService_IsPlayerInCombat.h" t="Include" />
               <e p="BTService_PlayerLocation.cpp" t="Include" />
               <e p="BTService_PlayerLocation.h" t="Include" />
               <e p="BTService_PlayerLocationIfSeen.cpp" t="Include" />
