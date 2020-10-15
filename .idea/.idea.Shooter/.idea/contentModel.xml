@@ -34,6 +34,8 @@
               <e p="BTTask_Shoot.h" t="Include" />
             </e>
             <e p="BTServices" t="Include">
+              <e p="BTService_IsPlayerInCombat.cpp" t="Include" />
+              <e p="BTService_IsPlayerInCombat.h" t="Include" />
               <e p="BTService_PlayerLocation.cpp" t="Include" />
               <e p="BTService_PlayerLocation.h" t="Include" />
               <e p="BTService_PlayerLocationIfSeen.cpp" t="Include" />
@@ -45,6 +47,8 @@
             </e>
           </e>
           <e p="Characters" t="Include">
+            <e p="PlayerShooterCharacter.cpp" t="Include" />
+            <e p="PlayerShooterCharacter.h" t="Include" />
             <e p="ShooterCharacter.cpp" t="Include" />
             <e p="ShooterCharacter.h" t="Include" />
           </e>
