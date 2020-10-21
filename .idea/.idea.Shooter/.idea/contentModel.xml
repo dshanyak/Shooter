@@ -49,10 +49,12 @@
             </e>
           </e>
           <e p="Characters" t="Include">
+            <e p="NPCShooterCharacter.cpp" t="Include" />
+            <e p="NPCShooterCharacter.h" t="Include" />
             <e p="PlayerShooterCharacter.cpp" t="Include" />
             <e p="PlayerShooterCharacter.h" t="Include" />
-            <e p="ShooterCharacter.cpp" t="Include" />
-            <e p="ShooterCharacter.h" t="Include" />
+            <e p="ShooterCharacterBase.cpp" t="Include" />
+            <e p="ShooterCharacterBase.h" t="Include" />
           </e>
           <e p="Controller" t="Include">
             <e p="ShooterPlayerController.cpp" t="Include" />
