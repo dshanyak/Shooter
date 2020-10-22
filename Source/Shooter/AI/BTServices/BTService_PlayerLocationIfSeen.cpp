@@ -5,6 +5,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "AIController.h"
 #include "Kismet/GameplayStatics.h"
+#include "Shooter/Characters/NPCShooterCharacter.h"
 
 class AIController;
 
@@ -32,8 +33,16 @@ void UBTService_PlayerLocationIfSeen::TickNode(UBehaviorTreeComponent& OwnerComp
         return;
     }
 
-    // Update player location if AI character has line of sight to player
-    if(AIController->LineOfSightTo(PlayerPawn))
+    // Get NPC Pawn
+    ANPCShooterCharacter* NPC = Cast<ANPCShooterCharacter>(AIController->GetPawn());
+    if(NPC == nullptr)
+    {
+        UE_LOG(LogTemp, Error, TEXT("BTService_PlayerLocationIfSeen: NPC is null"));
+        return;
+    }
+
+    // Update player location if AI character has line of sight to player 
+    if(NPC->bCanSeePlayer)
     {
         OwnerComp.GetBlackboardComponent()->SetValueAsObject(GetSelectedBlackboardKey(), PlayerPawn);
     }
