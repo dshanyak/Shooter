@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 
 #include "ShooterCharacterBase.h"
+#include "Engine/TargetPoint.h"
+
 #include "NPCShooterCharacter.generated.h"
 
 /**
@@ -14,5 +16,10 @@ UCLASS()
 class SHOOTER_API ANPCShooterCharacter : public AShooterCharacterBase
 {
 	GENERATED_BODY()
+
+
+public:
+	UPROPERTY(EditAnywhere)
+	ATargetPoint* PatrolPoint;
 	
 };

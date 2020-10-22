@@ -39,6 +39,5 @@ private:
 	FTimerHandle RestartTimer;
 	UPROPERTY(EditAnywhere)
 	float RestartDelay = 5.f;
-
 	
 };
