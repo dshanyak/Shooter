@@ -10,6 +10,11 @@ void APlayerShooterCharacter::BeginPlay()
     GetWorldTimerManager().SetTimer(RegainHealthTimer, this, &APlayerShooterCharacter::RegainHealth, RegainHealthInterval, true);
 }
 
+APlayerShooterCharacter::APlayerShooterCharacter()
+{
+    NoiseEmitterComponent = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("Noise Emitter"));
+}
+
 void APlayerShooterCharacter::RegainHealth()
 {
     if(!bIsInCombat)
@@ -43,6 +48,12 @@ void APlayerShooterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 float APlayerShooterCharacter::GetHealthPercent() const
 {
     return CurrentHealth / MaxHealth;
+}
+
+void APlayerShooterCharacter::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+    MakeNoise(1.f, this);
 }
 
 void APlayerShooterCharacter::MoveForward(float AxisValue) 

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "ShooterCharacterBase.h"
+#include "Components/PawnNoiseEmitterComponent.h"
 #include "Shooter/Characters/ShooterCharacterBase.h"
 #include "PlayerShooterCharacter.generated.h"
 
@@ -20,6 +21,9 @@ protected:
 	virtual void BeginPlay() override;
 	
 public:
+	// Constructor
+	APlayerShooterCharacter();
+	
 	// Checks if the player is in combat
 	UPROPERTY(VisibleAnywhere)
 	bool bIsInCombat = false;
@@ -30,6 +34,13 @@ public:
 	// Get the percentage of character's health
 	UFUNCTION(BlueprintPure)
     float GetHealthPercent() const;
+
+	// Noise Emitter
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Noise")
+	UPawnNoiseEmitterComponent* NoiseEmitterComponent;
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
 private:
 	// Regen health on timer

@@ -9,9 +9,15 @@ ANPCShooterCharacter::ANPCShooterCharacter()
 {
     PawnSensingComponent = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("Pawn Sensing Component"));
     PawnSensingComponent->OnSeePawn.AddDynamic(this, &ANPCShooterCharacter::CanSeePlayer);
+    PawnSensingComponent->OnHearNoise.AddDynamic(this, &ANPCShooterCharacter::CanHearSomething);
 }
 
 void ANPCShooterCharacter::CanSeePlayer(APawn* Pawn)
 {
-    bCanSeePlayer = true;
+    bCanSensPlayer = true;
+}
+
+void ANPCShooterCharacter::CanHearSomething(APawn* OtherActor, const FVector& Location, float Volume)
+{
+    bCanSensPlayer = true;
 }
