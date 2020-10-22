@@ -14,6 +14,4 @@ ANPCShooterCharacter::ANPCShooterCharacter()
 void ANPCShooterCharacter::CanSeePlayer(APawn* Pawn)
 {
     bCanSeePlayer = true;
-
-    UE_LOG(LogTemp, Warning, TEXT("%s"), *Pawn->GetName());
 }

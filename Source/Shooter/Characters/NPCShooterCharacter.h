@@ -22,17 +22,20 @@ class SHOOTER_API ANPCShooterCharacter : public AShooterCharacterBase
 public:
 	// Constructor
 	ANPCShooterCharacter();
-	
+
+	// Point where NPC will pace to
 	UPROPERTY(EditAnywhere)
 	ATargetPoint* PatrolPoint;
-	
+
+	// Adds sight and hearing to NPC
 	UPROPERTY(EditAnywhere)
 	UPawnSensingComponent* PawnSensingComponent;
-
-	// Adds dynamic to the PawnSensingComponent
-	UFUNCTION()
-	void CanSeePlayer(APawn* Pawn);
 	
 	UPROPERTY(EditDefaultsOnly)
 	bool bCanSeePlayer = false;
+
+private:
+	// Adds dynamic to the PawnSensingComponent
+	UFUNCTION()
+    void CanSeePlayer(APawn* Pawn);
 };
