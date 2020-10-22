@@ -52,4 +52,6 @@ private:
 	bool GunTrace(FHitResult& HitResult, FVector& ShotDirection);
 	AController* GetOwnerController() const;
 
+	bool bIsOwnerPlayer = false;
+
 };

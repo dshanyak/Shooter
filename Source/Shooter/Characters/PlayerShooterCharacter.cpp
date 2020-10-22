@@ -3,23 +3,28 @@
 
 #include "PlayerShooterCharacter.h"
 
+// Called at the beginning of play
 void APlayerShooterCharacter::BeginPlay()
 {
     Super::BeginPlay();
 
+    // Set up timer to regenerate health based every loop
     GetWorldTimerManager().SetTimer(RegainHealthTimer, this, &APlayerShooterCharacter::RegainHealth, RegainHealthInterval, true);
 }
 
+// Constructor
 APlayerShooterCharacter::APlayerShooterCharacter()
 {
+    // Set up noise emitter
     NoiseEmitterComponent = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("Noise Emitter"));
 }
 
+// Regenerate health every loop if the player is not in combat
 void APlayerShooterCharacter::RegainHealth()
 {
     if(!bIsInCombat)
     {
-        CurrentHealth = FMath::Clamp(CurrentHealth += 10.f, 0.f, MaxHealth);
+        CurrentHealth = FMath::Clamp(CurrentHealth += 10.f, 0.f, MaxHealth); // Health is limited to be between max health and 0
     }
 }
 
@@ -50,9 +55,13 @@ float APlayerShooterCharacter::GetHealthPercent() const
     return CurrentHealth / MaxHealth;
 }
 
+// Called every frame
 void APlayerShooterCharacter::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
+
+    // Replicates how the NPCs would hear footsteps behind them
+    // Note* Didn't actually add a noise, this is only for AI awareness
     MakeNoise(1.f, this);
 }
 

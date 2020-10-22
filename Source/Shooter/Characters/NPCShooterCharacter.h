@@ -32,7 +32,9 @@ public:
 	UPawnSensingComponent* PawnSensingComponent;
 	
 	UPROPERTY(EditDefaultsOnly)
-	bool bCanSensPlayer = false;
+	bool bCanSeePlayer = false;
+	UPROPERTY(EditDefaultsOnly)
+	bool bCanHearPlayer = false;
 
 private:
 	// Adds dynamic to the PawnSensingComponent

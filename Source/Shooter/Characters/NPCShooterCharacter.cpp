@@ -14,10 +14,11 @@ ANPCShooterCharacter::ANPCShooterCharacter()
 
 void ANPCShooterCharacter::CanSeePlayer(APawn* Pawn)
 {
-    bCanSensPlayer = true;
+    bCanSeePlayer = true;
 }
 
 void ANPCShooterCharacter::CanHearSomething(APawn* OtherActor, const FVector& Location, float Volume)
 {
-    bCanSensPlayer = true;
+    bCanHearPlayer = true;
+    UE_LOG(LogTemp, Warning, TEXT("i hear you"));
 }

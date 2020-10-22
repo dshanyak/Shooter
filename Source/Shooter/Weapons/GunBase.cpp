@@ -4,6 +4,8 @@
 #include "GunBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
+#include "Serialization/JsonTypes.h"
+#include "Shooter/Characters/PlayerShooterCharacter.h"
 
 // Sets default values
 AGunBase::AGunBase()
@@ -17,13 +19,20 @@ AGunBase::AGunBase()
 	MeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh Component"));
 	MeshComponent->SetupAttachment(Root);
 
+	
+
 }
 
 void AGunBase::PullTrigger()
 {
-	// Spawn muzzle flash
+	// Check if the owner of the gun is the player
+	bIsOwnerPlayer = Cast<APlayerShooterCharacter>(GetOwner()) == nullptr ? false : true;
+	
+	// Spawn muzzle effects
 	UGameplayStatics::SpawnEmitterAttached(MuzzleFlash, MeshComponent, TEXT("MuzzleFlashSocket"));
 	UGameplayStatics::SpawnSoundAttached(MuzzleSound, MeshComponent, TEXT("MuzzleFlashSocket"));
+	if(bIsOwnerPlayer)
+		MakeNoise(1, Cast<APawn>(GetOwner()));
 
 	FHitResult HitResult;
 	FVector ShotDirection;
@@ -33,6 +42,7 @@ void AGunBase::PullTrigger()
 		// Create particle and sound effects at impact point
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitEffect, HitResult.Location, ShotDirection.Rotation());
 		UGameplayStatics::SpawnSoundAtLocation(GetWorld(), HitSound, HitResult.Location, ShotDirection.Rotation());
+		MakeNoise(1, Cast<APawn>(GetOwner()), HitResult.Location);
 		
 		// Apply Damage
 		FPointDamageEvent DamageEvent(Damage, HitResult, ShotDirection, nullptr);

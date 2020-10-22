@@ -42,13 +42,13 @@ void UBTService_PlayerLocationIfSeen::TickNode(UBehaviorTreeComponent& OwnerComp
     }
 
     // Update player location if AI character has line of sight to player 
-    if(NPC->bCanSensPlayer && AIController->LineOfSightTo(PlayerPawn))
+    if((NPC->bCanSeePlayer || NPC->bCanHearPlayer) && AIController->LineOfSightTo(PlayerPawn))
     {
         OwnerComp.GetBlackboardComponent()->SetValueAsObject(GetSelectedBlackboardKey(), PlayerPawn);
     }
     else
     {
         OwnerComp.GetBlackboardComponent()->ClearValue(GetSelectedBlackboardKey());
-        NPC->bCanSensPlayer = false;
+        NPC->bCanSeePlayer = false;
     }
 }
