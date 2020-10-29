@@ -19,6 +19,5 @@ void ANPCShooterCharacter::CanSeePlayer(APawn* Pawn)
 
 void ANPCShooterCharacter::CanHearSomething(APawn* OtherActor, const FVector& Location, float Volume)
 {
-    bCanHearPlayer = true;
-    UE_LOG(LogTemp, Warning, TEXT("i hear you"));
+    bCanHearNoise = true;
 }

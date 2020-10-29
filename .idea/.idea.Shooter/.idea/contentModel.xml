@@ -43,6 +43,8 @@
               <e p="BTService_PlayerLocation.h" t="Include" />
               <e p="BTService_PlayerLocationIfSeen.cpp" t="Include" />
               <e p="BTService_PlayerLocationIfSeen.h" t="Include" />
+              <e p="BTService_SoundSourceIfHeard.cpp" t="Include" />
+              <e p="BTService_SoundSourceIfHeard.h" t="Include" />
             </e>
             <e p="Controllers" t="Include">
               <e p="ShooterAIController.cpp" t="Include" />
