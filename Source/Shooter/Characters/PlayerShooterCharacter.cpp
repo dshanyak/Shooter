@@ -62,7 +62,7 @@ void APlayerShooterCharacter::Tick(float DeltaTime)
 
     // Replicates how the NPCs would hear footsteps behind them
     // Note* Didn't actually add a noise, this is only for AI awareness
-    MakeNoise(1.f, this);
+    MakeNoise(0.4f, this, FVector(0.f), 2.f);   
 }
 
 void APlayerShooterCharacter::MoveForward(float AxisValue) 
