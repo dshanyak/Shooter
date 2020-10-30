@@ -9,6 +9,7 @@ void AShooterPlayerController::BeginPlay()
 {
     Super::BeginPlay();
 
+    // Add heads up display
     HUD = CreateWidget(this, HUDClass);
     if(HUD != nullptr)
     {

@@ -64,6 +64,8 @@
             <e p="ShooterPlayerController.h" t="Include" />
           </e>
           <e p="GameModes" t="Include">
+            <e p="GetToLocationGameMode.cpp" t="Include" />
+            <e p="GetToLocationGameMode.h" t="Include" />
             <e p="KillEmAllGameMode.cpp" t="Include" />
             <e p="KillEmAllGameMode.h" t="Include" />
             <e p="ShooterGameModeBase.cpp" t="Include" />
