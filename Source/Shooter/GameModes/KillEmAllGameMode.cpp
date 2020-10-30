@@ -25,17 +25,25 @@ void AKillEmAllGameMode::PawnKilled(APawn* PawnKilled)
     // If the killed pawn is an NPC, disengage player from combat after delay
     GetWorldTimerManager().SetTimer(DisengageFromCombatTimerHandle, this, &AKillEmAllGameMode::DisengageCombat, DisengageCombatDelay);
     
-    //check if any more are alive. If so, game's not over yet
+    //If enemies are still alive, update EnemiesRemaining and exit because game isn't over yet
+    EnemiesRemaining = 0;
     for(AShooterAIController* AIController : TActorRange<AShooterAIController>(GetWorld()))
     {
         if(!AIController->IsDead())
         {
-            return;
+            EnemiesRemaining++;
         }
     }
+    if(EnemiesRemaining > 0)
+        return;
 
     EndGame(true);
     
+}
+
+int AKillEmAllGameMode::GetNumEnemies() const
+{ 
+    return EnemiesRemaining;
 }
 
 void AKillEmAllGameMode::EndGame(bool bIsPlayerWinner) const
