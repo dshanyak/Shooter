@@ -42,6 +42,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// Called if player wins (used in GetToLocationGameMode)
+	UFUNCTION(BlueprintCallable)
+	void WinGame() const;
+
 private:
 	// Regen health on timer
 	FTimerHandle RegainHealthTimer;

@@ -3,6 +3,9 @@
 
 #include "PlayerShooterCharacter.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "Shooter/GameModes/GetToLocationGameMode.h"
+
 // Called at the beginning of play
 void APlayerShooterCharacter::BeginPlay()
 {
@@ -67,6 +70,16 @@ void APlayerShooterCharacter::Tick(float DeltaTime)
         MakeNoise(0.4f, this, FVector(0.f), 2.f); 
     }
       
+}
+
+// Called if the player wins
+void APlayerShooterCharacter::WinGame() const
+{
+    AGetToLocationGameMode* GameMode = Cast<AGetToLocationGameMode>(UGameplayStatics::GetGameMode(GetWorld()));
+    if(GameMode)
+    {
+        GameMode->WinGame();
+    }
 }
 
 void APlayerShooterCharacter::MoveForward(float AxisValue) 
