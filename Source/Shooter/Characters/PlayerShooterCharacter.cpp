@@ -62,7 +62,11 @@ void APlayerShooterCharacter::Tick(float DeltaTime)
 
     // Replicates how the NPCs would hear footsteps behind them
     // Note* Didn't actually add a noise, this is only for AI awareness
-    MakeNoise(0.4f, this, FVector(0.f), 2.f);   
+    if(GetVelocity().Size() > 0) // If the player is perfectly still, no noise is made. Allows stealth around corners
+    {
+        MakeNoise(0.4f, this, FVector(0.f), 2.f); 
+    }
+      
 }
 
 void APlayerShooterCharacter::MoveForward(float AxisValue) 
