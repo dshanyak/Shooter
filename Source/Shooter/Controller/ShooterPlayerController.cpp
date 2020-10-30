@@ -9,11 +9,32 @@ void AShooterPlayerController::BeginPlay()
 {
     Super::BeginPlay();
 
+    ShowStartDisplays();
+    
+}
+
+void AShooterPlayerController::ShowStartDisplays()
+{
+    Intro = CreateWidget(this, IntroClass);
+    if(Intro != nullptr)
+    {
+        Intro->AddToViewport();
+        GetWorldTimerManager().SetTimer(IntroTimer, this, &AShooterPlayerController::RemoveIntro, IntroDelay);
+    }
+    
     // Add heads up display
     HUD = CreateWidget(this, HUDClass);
     if(HUD != nullptr)
     {
         HUD->AddToViewport();
+    }
+}
+
+void AShooterPlayerController::RemoveIntro() const
+{
+    if(Intro != nullptr)
+    {
+        Intro->RemoveFromViewport();
     }
 }
 

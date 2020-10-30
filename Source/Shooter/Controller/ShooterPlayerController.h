@@ -40,4 +40,14 @@ private:
 	UPROPERTY(EditAnywhere)
 	float RestartDelay = 5.f;
 	
+	// Display Intro
+	FTimerHandle IntroTimer;
+	UPROPERTY(EditAnywhere)
+	float IntroDelay = 5.f;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UUserWidget> IntroClass;
+	UUserWidget* Intro;
+	void ShowStartDisplays();
+	void RemoveIntro() const;
+	
 };
